@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process & Lab | The Berry Patch</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body>
+
+
+
+    <div class="container" style="padding-top: 120px;">
+        <a href="index.html#story" class="back-btn">&larr; Back</a>
+
+        <!-- Section 1: Farm to Table -->
+        <section class="section reveal">
+            <span class="eyebrow">BEHIND THE SCENES</span>
+            <h2>From Farm to Table</h2>
+            
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-icon">🌱</div>
+                    <div>
+                        <h3>Organically Grown</h3>
+                        <p>Camarosa variety cultivated in Kodaikanal's cool climate with zero synthetic inputs.</p>
+                    </div>
+                </div>
+                <div class="process-step green">
+                    <div class="step-icon">✋</div>
+                    <div>
+                        <h3>Hand-Harvested</h3>
+                        <p>Each berry is hand picked — never machine-harvested.</p>
+                    </div>
+                </div>
+                <div class="process-step green">
+                    <div class="step-icon">📦</div>
+                    <div>
+                        <h3>Inspected & Sorted</h3>
+                        <p>Every batch is visually inspected and sorted for size, colour, and quality.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-icon">🚚</div>
+                    <div>
+                        <h3>Delivered in 24 hrs</h3>
+                        <p>Packed in food-grade boxes and dispatched the same day — farm fresh at your door.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Section 2: Lab Report Summary -->
+    <section class="section lab-summary reveal">
+        <div class="container">
+            <span class="eyebrow" style="color: var(--blue-accent);">🧪 LAB CERTIFIED</span>
+            <h2>Lab Report</h2>
+            <span class="lab-metadata">Report No: FSRL2026-40 · 13 Apr 2026</span>
+            <span class="lab-metadata">Sample: Strawberry (1 kg) · Analysed 08–11 Apr 2026</span>
+
+            <div class="lab-cards">
+                <div class="lab-card">
+                    <h4>PESTICIDE RESIDUE</h4>
+                    <p class="note">Below limit of quantification</p>
+                    <span class="badge">Effectively zero</span>
+                </div>
+                <div class="lab-card">
+                    <h4>LCMS-MS PANEL</h4>
+                    <p class="note">70+ Compounds Tested</p>
+                    <span class="badge">None Detected - All Clear</span>
+                </div>
+                <div class="lab-card">
+                    <h4>GCMS-MS PANEL</h4>
+                    <p class="note">60+ Compounds Tested</p>
+                    <span class="badge">None Detected - All Clear</span>
+                </div>
+                <div class="lab-card">
+                    <h4>TEST METHOD</h4>
+                    <p class="note">ICAR-IIHR accredited protocol</p>
+                </div>
+            </div>
+
+            <div class="lab-attribution">
+                <div class="lab-icon">🧪</div>
+                <div>
+                    <h3>Food Safety Referral Laboratory</h3>
+                    <p style="color: var(--muted-text); font-size: 14px;">ICAR-IIHR, Bangalore · TC-16406 Accredited</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Lab PDF Page 1 -->
+    <section class="section pdf-section reveal">
+        <div class="container">
+            <div class="pdf-header">
+                <span class="pdf-label">PAGE 1 OF 2</span>
+                <h3>FSRL2026-40 · Ctrl+scroll or pinch to zoom</h3>
+            </div>
+            
+            <div class="pdf-container">
+                <canvas id="pdf-canvas"></canvas>
+            </div>
+            <p class="pdf-footnote">TC-16406 Accredited · Analysed 08 Apr 2026</p>
+        </div>
+    </section>
+
+    <!-- Section 4: Lab PDF Page 2 -->
+    <section class="section pdf-section reveal">
+        <div class="container">
+            <div class="pdf-header">
+                <span class="pdf-label" style="color: var(--blue-accent);">PAGE 2 OF 2</span>
+                <h3>FSRL2026-40 · Ctrl+scroll or pinch to zoom</h3>
+            </div>
+            
+            <div class="pdf-container">
+                <canvas id="pdf-canvas-2"></canvas>
+            </div>
+            <p class="pdf-footnote">TC-16406 Accredited · Report issued 13 Apr 2026</p>
+        </div>
+    </section>
+
+
+    <!-- Section 5: Commitment -->
+    <section class="section commitment reveal">
+        <div class="container">
+            <span class="eyebrow">OUR PROMISE</span>
+            <h2>Our Commitment</h2>
+            <p class="body">Every strawberry reflects a commitment to clean and healthy food for our valuable families.</p>
+
+            <div class="promise-cards">
+                <div class="promise-card">
+                    <div class="icon">🌱</div>
+                    <div class="divider"></div>
+                    <div class="promise-content">
+                        <span class="stat">Organically<br>Grown</span>
+                        <span class="label">No Chemicals</span>
+                        <p class="desc">No pesticides, herbicides, or synthetic fertilisers.</p>
+                    </div>
+                </div>
+                <div class="promise-card">
+                    <div class="icon"><img src="assets/ICAR.png" alt="ICAR Logo"></div>
+                    <div class="divider"></div>
+                    <div class="promise-content">
+                        <span class="stat">ICAR</span>
+                        <span class="label">Certified</span>
+                        <p class="desc">Farming practices validated by ICAR-recommended guidelines.</p>
+                    </div>
+                </div>
+                <div class="promise-card">
+                    <div class="icon">🍃</div>
+                    <div class="divider"></div>
+                    <div class="promise-content">
+                        <span class="stat">24 hr</span>
+                        <span class="label">Farm to Table</span>
+                        <p class="desc">Shortest possible supply chain — no middlemen.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="back-to-home">
+                <a href="index.html#story" class="btn-pill btn-green">&larr; Back to Strawberries</a>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script src="pdf-data.js"></script>
+    <script src="pdf-viewer.js"></script>
+</body>
+</html>
