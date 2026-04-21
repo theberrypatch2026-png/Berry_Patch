@@ -23,8 +23,8 @@ function ReportPage({ src, label }: { src: string; label: string }) {
   }, [])
 
   useEffect(() => {
-    const el = containerRef.current
-    if (!el) return
+    if (!containerRef.current) return
+    const container = containerRef.current!
 
     const ptrs = new Map<number, PointerEvent>()
 
@@ -42,8 +42,8 @@ function ReportPage({ src, label }: { src: string; label: string }) {
     function clampS(v: number) { return Math.min(Math.max(v, MIN), MAX) }
 
     function clampXY(s: number, x: number, y: number) {
-      const w = el.clientWidth
-      const h = el.clientHeight
+      const w = container.clientWidth
+      const h = container.clientHeight
       // image rendered size at this scale (transform-origin: 0 0)
       const iw = w * s
       const ih = h * (1754 / 1240) * s   // intrinsic aspect ratio A4
@@ -66,7 +66,7 @@ function ReportPage({ src, label }: { src: string; label: string }) {
 
     // ── pointer events ─────────────────────────
     function onDown(e: PointerEvent) {
-      el.setPointerCapture(e.pointerId)
+      container.setPointerCapture(e.pointerId)
       ptrs.set(e.pointerId, e)
 
       if (ptrs.size === 1) {
@@ -78,7 +78,7 @@ function ReportPage({ src, label }: { src: string; label: string }) {
         const [a, b] = [...ptrs.values()]
         pinchStartDist = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY)
         pinchStartS = t.current.s
-        const rect = el.getBoundingClientRect()
+        const rect = container.getBoundingClientRect()
         pinchCx = (a.clientX + b.clientX) / 2 - rect.left
         pinchCy = (a.clientY + b.clientY) / 2 - rect.top
       }
@@ -112,24 +112,24 @@ function ReportPage({ src, label }: { src: string; label: string }) {
 
     function onWheel(e: WheelEvent) {
       e.preventDefault()
-      const rect = el.getBoundingClientRect()
+      const rect = container.getBoundingClientRect()
       const cx = e.clientX - rect.left
       const cy = e.clientY - rect.top
       const newS = clampS(t.current.s * (e.deltaY < 0 ? 1.13 : 0.9))
       zoomToward(cx, cy, newS)
     }
 
-    el.addEventListener('pointerdown', onDown)
-    el.addEventListener('pointermove', onMove)
-    el.addEventListener('pointerup', onUp)
-    el.addEventListener('pointercancel', onUp)
-    el.addEventListener('wheel', onWheel, { passive: false })
+    container.addEventListener('pointerdown', onDown)
+    container.addEventListener('pointermove', onMove)
+    container.addEventListener('pointerup', onUp)
+    container.addEventListener('pointercancel', onUp)
+    container.addEventListener('wheel', onWheel, { passive: false })
     return () => {
-      el.removeEventListener('pointerdown', onDown)
-      el.removeEventListener('pointermove', onMove)
-      el.removeEventListener('pointerup', onUp)
-      el.removeEventListener('pointercancel', onUp)
-      el.removeEventListener('wheel', onWheel)
+      container.removeEventListener('pointerdown', onDown)
+      container.removeEventListener('pointermove', onMove)
+      container.removeEventListener('pointerup', onUp)
+      container.removeEventListener('pointercancel', onUp)
+      container.removeEventListener('wheel', onWheel)
     }
   }, [commit])
 

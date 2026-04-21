@@ -11,8 +11,6 @@ export default function Navbar() {
   const pathname = usePathname()
 
   useEffect(() => {
-    setScrolled(false)
-
     const container =
       document.getElementById('scroll-container') ||
       document.getElementById('process-container')
@@ -23,6 +21,7 @@ export default function Navbar() {
     }
 
     const target = container ?? window
+    handleScroll()
     target.addEventListener('scroll', handleScroll, { passive: true })
     return () => target.removeEventListener('scroll', handleScroll)
   }, [pathname])
