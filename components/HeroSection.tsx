@@ -18,15 +18,7 @@ export default function HeroSection() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 2.2 }}
       >
-        <Image src="/assets/logo.png" alt="The Berry Patch" width={200} height={200} className="object-contain mb-3" priority />
-        <h1 className="font-serif leading-[1.05] mb-2 text-center">
-          <span className="block text-lg italic font-normal text-muted">The</span>
-          <span className="block text-4xl font-bold">
-            <span className="text-charcoal">Berry </span>
-            <span className="text-berry">Patch</span>
-          </span>
-        </h1>
-        <p className="font-sans text-sm text-muted italic">Organic Goodness, Berry By Berry.</p>
+        <Image src="/assets/logo.png" alt="The Berry Patch" width={200} height={200} className="object-contain" priority />
       </motion.div>
 
       {/* Vertical card stack — flex-1 fills all remaining space */}
@@ -38,7 +30,7 @@ export default function HeroSection() {
       >
         {/* Strawberry */}
         <Link href="/process" className="relative flex-1 rounded-2xl overflow-hidden group cursor-pointer">
-          <Image src="/assets/real-berries.jpg" alt="Strawberry" fill className="object-cover group-hover:scale-105 transition-transform duration-500" priority sizes="100vw" />
+          <Image src="/assets/strawberry.png" alt="Strawberry" fill className="object-cover group-hover:scale-105 transition-transform duration-500" priority sizes="100vw" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent" />
           <div className="absolute top-2 left-2">
             <span className="inline-flex items-center gap-1 font-sans text-[8px] tracking-[0.14em] uppercase text-white bg-forest/90 px-2 py-0.5 rounded-full">
@@ -55,7 +47,7 @@ export default function HeroSection() {
 
         {/* Raspberry */}
         <div className="relative flex-1 rounded-2xl overflow-hidden">
-          <Image src="/assets/real-berries2.jpg" alt="Raspberry" fill className="object-cover" sizes="100vw" />
+          <Image src="/assets/raspberry.png" alt="Raspberry" fill className="object-cover" sizes="100vw" />
           <div className="absolute inset-0 bg-[#7a0f20]/75" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           <div className="absolute inset-0 flex flex-col justify-end px-3 py-2.5">
@@ -66,7 +58,7 @@ export default function HeroSection() {
 
         {/* Blueberry */}
         <div className="relative flex-1 rounded-2xl overflow-hidden">
-          <Image src="/assets/real-farm.jpg" alt="Blueberry" fill className="object-cover" sizes="100vw" />
+          <Image src="/assets/blueberry.png" alt="Blueberry" fill className="object-cover" sizes="100vw" />
           <div className="absolute inset-0 bg-[#0d1040]/80" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           <div className="absolute inset-0 flex flex-col justify-end px-3 py-2.5">
