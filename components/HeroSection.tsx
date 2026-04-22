@@ -11,9 +11,10 @@ export default function HeroSection() {
       className="flex flex-col items-center bg-white overflow-hidden px-5 pt-4 pb-4"
       style={{ height: '100dvh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }}
     >
+     <div className="w-full max-w-none md:max-w-[480px] flex-1 min-h-0 flex flex-col items-center mx-auto">
       {/* Centred logo + branding */}
       <motion.div
-        className="shrink-0 flex flex-col items-center text-center mb-0 -translate-y-8"
+        className="shrink-0 flex flex-col items-center text-center mb-0 -translate-y-8 md:-translate-y-4"
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.01 }}
@@ -23,7 +24,7 @@ export default function HeroSection() {
           alt="The Berry Patch"
           width={460}
           height={460}
-          className="object-contain w-[320px] sm:w-[360px] md:w-[410px] h-auto"
+          className="object-contain w-[320px] sm:w-[360px] md:w-[360px] h-auto"
           priority
         />
       </motion.div>
@@ -124,6 +125,7 @@ export default function HeroSection() {
           </div>
         </a>
       </motion.div>
+     </div>
     </section>
   )
 }
