@@ -8,22 +8,29 @@ import { motion } from 'framer-motion'
 export default function HeroSection() {
   return (
     <section
-      className="flex flex-col items-center bg-white overflow-hidden px-5 pt-6 pb-4"
+      className="flex flex-col items-center bg-white overflow-hidden px-5 pt-4 pb-4"
       style={{ height: '100dvh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }}
     >
       {/* Centred logo + branding */}
       <motion.div
-        className="shrink-0 flex flex-col items-center text-center mb-5"
+        className="shrink-0 flex flex-col items-center text-center mb-0 -translate-y-8"
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.01 }}
       >
-        <Image src="/assets/logo.png" alt="The Berry Patch" width={200} height={200} className="object-contain" priority />
+        <Image
+          src="/assets/logo.png"
+          alt="The Berry Patch"
+          width={460}
+          height={460}
+          className="object-contain w-[320px] sm:w-[360px] md:w-[410px] h-auto"
+          priority
+        />
       </motion.div>
 
       {/* Vertical card stack — flex-1 fills all remaining space */}
       <motion.div
-        className="w-full flex-1 min-h-0 flex flex-col gap-2"
+        className="w-full flex-1 min-h-0 flex flex-col gap-2 -mt-4"
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.16, ease: [0.25, 0.1, 0.25, 1] as const }}
@@ -75,7 +82,7 @@ export default function HeroSection() {
         <div className="shrink-0 w-full h-px bg-border my-1.5" />
 
         {/* Berry Preserve */}
-        <div className="flex flex-col items-center justify-center px-4 py-3 flex-[0.5] rounded-xl bg-[#f9f9f8] border border-border min-h-[60px]">
+        <div className="shrink-0 flex flex-col items-center justify-center px-4 py-3 rounded-xl bg-[#f9f9f8] border border-border">
           <p className="font-serif text-[22px] font-bold text-charcoal text-center tracking-widest">The Berry Preserve</p>
         </div>
       </motion.div>
