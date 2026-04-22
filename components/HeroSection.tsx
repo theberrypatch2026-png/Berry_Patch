@@ -76,7 +76,7 @@ export default function HeroSection() {
 
         {/* Berry Preserve */}
         <div className="flex flex-col items-center justify-center px-4 py-3 flex-[0.5] rounded-xl bg-[#f9f9f8] border border-border min-h-[60px]">
-          <p className="font-serif text-[22px] font-bold text-charcoal text-center tracking-widest">Berry Preserve</p>
+          <p className="font-serif text-[22px] font-bold text-charcoal text-center tracking-widest">The Berry Preserve</p>
         </div>
       </motion.div>
 
