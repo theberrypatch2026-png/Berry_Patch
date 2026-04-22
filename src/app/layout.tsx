@@ -21,7 +21,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'The Berry Patch',
   description: 'Organic strawberries from the misty hills of Kodaikanal. Organic Goodness, Berry By Berry.',
-  icons: { icon: '/favicon.svg' },
+  icons: { icon: '/favicon.png' },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
