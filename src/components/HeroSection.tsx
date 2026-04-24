@@ -8,13 +8,13 @@ import { motion } from 'framer-motion'
 export default function HeroSection() {
   return (
     <section
-      className="flex flex-col items-center bg-white overflow-hidden px-5 pt-16 pb-12 md:pt-24 md:pb-16"
-      style={{ minHeight: 'auto' }}
+      className="h-screen flex flex-col items-center justify-center bg-white overflow-hidden px-5 pt-2 pb-6"
+      style={{ minHeight: 0 }}
     >
-     <div className="w-full max-w-none md:max-w-[480px] flex flex-col items-center mx-auto">
+     <div className="w-full max-w-[420px] md:max-w-[480px] flex flex-col items-center mx-auto -mt-20">
       {/* Centred logo + branding */}
       <motion.div
-        className="shrink-0 flex flex-col items-center text-center mb-0 -translate-y-4 md:-translate-y-2"
+        className="shrink-0 flex flex-col items-center text-center mb-0"
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.01 }}
@@ -37,7 +37,7 @@ export default function HeroSection() {
         transition={{ duration: 0.7, delay: 0.16, ease: [0.25, 0.1, 0.25, 1] as const }}
       >
         {/* Top Split: Strawberry (Left) / Raspberry & Blueberry (Right) */}
-        <div className="flex w-full gap-2 h-[340px] md:h-[420px] shrink-0">
+        <div className="flex w-full gap-2 h-[300px] md:h-[380px] shrink-0">
           <Link href="/process" className="relative flex-[1.4] rounded-2xl overflow-hidden group cursor-pointer">
             <Image src="/assets/strawberry.png" alt="Strawberry" fill className="object-contain scale-[1.15] group-hover:scale-[1.22] transition-transform duration-500" priority sizes="(max-width: 768px) 60vw, 40vw" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent" />
