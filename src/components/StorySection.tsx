@@ -21,7 +21,7 @@ export default function StorySection() {
     >
       <BackLink />
 
-      <div className="max-w-7xl mx-auto w-full px-6 md:px-12" style={{ paddingTop: 'clamp(12rem, 22vw, 18rem)', paddingBottom: 'clamp(3rem, 6vw, 6rem)' }}>
+      <div className="max-w-7xl mx-auto w-full px-6 md:px-12" style={{ paddingTop: 'clamp(9rem, 12vw, 11rem)', paddingBottom: 'clamp(3rem, 6vw, 6rem)' }}>
 
         <motion.p className="font-sans text-sm tracking-[0.35em] uppercase text-berry mb-6 text-center font-semibold" {...reveal(0)}>
           The Origin
@@ -63,7 +63,6 @@ export default function StorySection() {
             <motion.p className="font-sans text-sm md:text-[15px] text-muted leading-[1.8]" {...reveal(0.29)}>
               We chose the Camarosa variety - handpicked and lab-tested by ICAR-IIHR Bangalore with zero pesticide residue across 130+ compounds.
             </motion.p>
-
           </div>
         </div>
       </div>

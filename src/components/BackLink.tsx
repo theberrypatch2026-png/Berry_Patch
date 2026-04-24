@@ -5,8 +5,9 @@ import { motion } from 'framer-motion'
 
 export default function BackLink() {
   return (
-    <motion.div 
-      className="absolute top-28 left-6 md:top-32 md:left-12 z-20"
+    <motion.div
+      className="absolute left-6 md:left-12 z-20"
+      style={{ top: 'max(env(safe-area-inset-top, 0px) + 12px, 60px)' }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.5, duration: 0.6 }}
