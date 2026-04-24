@@ -167,7 +167,7 @@ function ReportPage({ src, label }: { src: string; label: string }) {
             */
             height: 'min(calc(100dvh - 80px), calc((100vw - 32px) * 1754 / 1240))',
             width:  'min(calc((100dvh - 80px) * 1240 / 1754), calc(100vw - 32px))',
-            touchAction: 'none',
+            touchAction: display.s > 1 ? 'none' : 'pan-y',
             cursor: display.s > 1 ? 'grab' : 'default',
           }}
         >

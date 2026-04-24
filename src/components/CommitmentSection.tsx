@@ -70,7 +70,17 @@ export default function CommitmentSection() {
           ))}
         </div>
 
-
+        <motion.div className="flex justify-center mt-12" {...reveal(0.5)}>
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-berry font-sans text-base font-semibold text-white hover:bg-berry/90 transition-all duration-200 cursor-pointer shadow-md"
+          >
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+              <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+            back to berry patch
+          </Link>
+        </motion.div>
 
       </div>
     </section>

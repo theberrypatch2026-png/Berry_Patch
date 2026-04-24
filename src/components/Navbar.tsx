@@ -11,6 +11,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
   const isHeroPage = pathname === '/'
+  const isProcessPage = pathname === '/process'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,7 +28,7 @@ const Navbar = () => {
   }, [pathname])
 
   // Hide Navbar completely on the main hero page as requested
-  if (isHeroPage) return null
+  if (isHeroPage || isProcessPage) return null
 
   const navLinks = [
     { name: 'BERRY PATCH', href: '/' },

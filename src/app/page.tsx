@@ -2,11 +2,7 @@ import HeroSection from '@/components/HeroSection'
 
 export default function Home() {
   return (
-    <main
-      id="scroll-container"
-      className="fixed inset-0 overflow-y-scroll"
-      style={{ scrollSnapType: 'y mandatory' }}
-    >
+    <main className="min-h-screen overflow-hidden bg-white">
       <HeroSection />
     </main>
   )

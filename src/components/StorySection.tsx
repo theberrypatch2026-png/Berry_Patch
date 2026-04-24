@@ -19,7 +19,7 @@ export default function StorySection() {
       className="relative flex flex-col justify-center bg-white overflow-hidden py-16 md:py-24"
       style={{ minHeight: 'auto' }}
     >
-
+      <BackLink />
 
       <div className="max-w-7xl mx-auto w-full px-6 md:px-12 pb-24 md:pb-32 pt-28 md:pt-36">
 
