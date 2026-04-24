@@ -3,7 +3,7 @@ import LockScroll from '@/components/LockScroll'
 
 export default function Home() {
   return (
-    <main className="h-screen overflow-hidden bg-white">
+    <main className="fixed inset-0 bg-white overflow-hidden flex flex-col">
       <LockScroll />
       <HeroSection />
     </main>
