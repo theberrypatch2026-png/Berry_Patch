@@ -2,7 +2,6 @@
 
 import { useRef, useEffect, useCallback, useState } from 'react'
 import Image from 'next/image'
-import ScrollHint from './ScrollHint'
 
 const MIN = 1
 const MAX = 5
@@ -132,9 +131,9 @@ function ReportPage({ src, label }: { src: string; label: string }) {
   }
 
   return (
-    <section
-      className="relative flex flex-col bg-[#F2F2F0] overflow-hidden"
-      style={{ height: '100dvh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }}
+    <div
+      className="relative flex flex-col shrink-0 w-screen bg-[#F2F2F0] overflow-hidden"
+      style={{ minHeight: '90dvh' }}
     >
       {/* Toolbar */}
       <div className="shrink-0 px-5 py-2.5 flex items-center justify-between border-b border-border">
@@ -152,10 +151,11 @@ function ReportPage({ src, label }: { src: string; label: string }) {
         </div>
       </div>
 
-      {/* Centred document â€” explicit dimensions computed from viewport so it never collapses */}
+      {/* Centred document — explicit dimensions computed from viewport so it never collapses */}
       <div className="flex-1 min-h-0 flex items-center justify-center p-3 md:p-5">
         <div
           ref={containerRef}
+          data-zoom-doc
           className="relative overflow-hidden select-none bg-white shadow-xl border border-border rounded-sm"
           style={{
             /*
@@ -192,17 +192,155 @@ function ReportPage({ src, label }: { src: string; label: string }) {
           </div>
         </div>
       </div>
-      <ScrollHint />
-    </section>
+    </div>
   )
 }
 
 export default function LabPDFSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const [page, setPage] = useState(0)
+  const [dragOffset, setDragOffset] = useState(0)
+  const [isDragging, setIsDragging] = useState(false)
+  const startX = useRef(0)
+  const startY = useRef(0)
+  const widthRef = useRef(0)
+  const axisLocked = useRef<null | 'x' | 'y'>(null)
+  const activePointer = useRef<number | null>(null)
+
+  const goTo = (i: number) => {
+    setPage(i)
+    setDragOffset(0)
+  }
+
+  const onPointerDown = (e: React.PointerEvent<HTMLElement>) => {
+    if (e.pointerType === 'mouse' && e.button !== 0) return
+    const target = e.target as HTMLElement
+    // Ignore if touch started inside the zoom document — preserve pinch/pan
+    if (target.closest('[data-zoom-doc]')) return
+    // Ignore clicks on interactive controls (buttons inside toolbar, dots, arrows)
+    if (target.closest('button')) return
+
+    activePointer.current = e.pointerId
+    startX.current = e.clientX
+    startY.current = e.clientY
+    widthRef.current = e.currentTarget.clientWidth || window.innerWidth
+    axisLocked.current = null
+    setIsDragging(true)
+    try { e.currentTarget.setPointerCapture(e.pointerId) } catch {}
+  }
+
+  const onPointerMove = (e: React.PointerEvent<HTMLElement>) => {
+    if (activePointer.current !== e.pointerId) return
+    const dx = e.clientX - startX.current
+    const dy = e.clientY - startY.current
+
+    if (!axisLocked.current) {
+      if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return
+      axisLocked.current = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y'
+      if (axisLocked.current === 'y') {
+        setIsDragging(false)
+        activePointer.current = null
+        return
+      }
+    }
+
+    if (axisLocked.current === 'x') {
+      const base = -page * widthRef.current
+      const desired = base + dx
+      const min = -widthRef.current
+      const max = 0
+      // Rubber-band past bounds
+      let clampedTotal = desired
+      if (desired > max) clampedTotal = max + (desired - max) * 0.25
+      else if (desired < min) clampedTotal = min + (desired - min) * 0.25
+      setDragOffset(clampedTotal - base)
+    }
+  }
+
+  const onPointerUp = (e: React.PointerEvent<HTMLElement>) => {
+    if (activePointer.current !== e.pointerId) return
+    activePointer.current = null
+    if (!isDragging) {
+      setDragOffset(0)
+      return
+    }
+    const threshold = Math.max(40, widthRef.current * 0.18)
+    let next = page
+    if (dragOffset < -threshold && page < 1) next = page + 1
+    else if (dragOffset > threshold && page > 0) next = page - 1
+    setIsDragging(false)
+    setDragOffset(0)
+    setPage(next)
+  }
+
   return (
-    <>
-      <ReportPage src="/assets/report_p1.png" label="Lab Report - Page 1 of 2" />
-      <ReportPage src="/assets/report_p2.png" label="Lab Report - Page 2 of 2" />
-    </>
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden bg-[#F2F2F0]"
+      style={{ minHeight: '90dvh', touchAction: 'pan-y' }}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={onPointerUp}
+      onPointerCancel={onPointerUp}
+    >
+      <div
+        className="flex"
+        style={{
+          minHeight: '100dvh',
+          transform: `translateX(calc(${-page * 100}vw + ${dragOffset}px))`,
+          transition: isDragging ? 'none' : 'transform 450ms cubic-bezier(0.22, 1, 0.36, 1)',
+          willChange: 'transform',
+        }}
+      >
+        <ReportPage src="/assets/report_p1.png" label="Lab Report - Page 1 of 2" />
+        <ReportPage src="/assets/report_p2.png" label="Lab Report - Page 2 of 2" />
+      </div>
+
+      {/* Page indicator */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-4 md:bottom-5 flex justify-center z-20">
+        <div className="pointer-events-auto flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 backdrop-blur border border-border shadow-sm">
+          {[0, 1].map((i) => (
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              aria-label={`Go to page ${i + 1}`}
+              aria-current={page === i}
+              className={`h-2 rounded-full transition-all cursor-pointer ${
+                page === i ? 'w-6 bg-charcoal' : 'w-2 bg-charcoal/30 hover:bg-charcoal/50'
+              }`}
+            />
+          ))}
+          <span className="font-sans text-[10px] tracking-[0.25em] uppercase text-muted ml-1 tabular-nums">
+            {page + 1} / 2
+          </span>
+        </div>
+      </div>
+
+      {/* Next page hint on page 1 */}
+      <button
+        onClick={() => goTo(1)}
+        aria-label="Next page"
+        className={`absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-white/85 backdrop-blur border border-border shadow-md text-charcoal hover:bg-white transition-all cursor-pointer ${
+          page === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      </button>
+
+      {/* Prev page hint on page 2 */}
+      <button
+        onClick={() => goTo(0)}
+        aria-label="Previous page"
+        className={`absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-white/85 backdrop-blur border border-border shadow-md text-charcoal hover:bg-white transition-all cursor-pointer ${
+          page === 1 ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+      </button>
+    </section>
   )
 }
-

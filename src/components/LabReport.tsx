@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import ScrollHint from './ScrollHint'
 
 const results = [
   { label: 'Pesticide Residue', value: 'Below LOQ', note: 'Limit of Quantification', pass: true },
@@ -21,10 +20,11 @@ const reveal = (delay = 0) => ({
 export default function LabReport() {
   return (
     <section
+      id="lab-report"
       className="relative flex flex-col justify-center bg-white overflow-hidden"
-      style={{ height: '100dvh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }}
+      style={{ minHeight: 'auto' }}
     >
-      <div className="max-w-7xl mx-auto w-full px-6 md:px-12 py-8">
+      <div className="max-w-7xl mx-auto w-full px-6 md:px-12 py-24 md:py-32">
 
         <motion.p className="font-sans text-sm tracking-[0.35em] uppercase text-berry mb-6 font-semibold text-center" {...reveal(0)}>
           Lab Report Summary
@@ -61,7 +61,6 @@ export default function LabReport() {
 
 
       </div>
-      <ScrollHint />
     </section>
   )
 }

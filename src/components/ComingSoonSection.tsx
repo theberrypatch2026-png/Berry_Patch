@@ -12,8 +12,8 @@ const reveal = (delay = 0) => ({
 export default function ComingSoonSection() {
   return (
     <section
-      className="flex items-center bg-white overflow-hidden"
-      style={{ height: '100dvh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }}
+      className="flex items-center bg-white overflow-hidden pt-32 pb-24 md:pt-40 md:pb-32"
+      style={{ minHeight: 'auto' }}
     >
       <div className="max-w-7xl mx-auto w-full px-6 md:px-12 py-8 flex flex-col items-center text-center">
 

@@ -3,6 +3,7 @@ import ProcessHero from '@/components/ProcessHero'
 import LabReport from '@/components/LabReport'
 import LabPDFSection from '@/components/LabPDFSection'
 import CommitmentSection from '@/components/CommitmentSection'
+import SmoothScroll from '@/components/SmoothScroll'
 
 export const metadata = {
   title: 'Our Process - The Berry Patch',
@@ -11,11 +12,8 @@ export const metadata = {
 
 export default function ProcessPage() {
   return (
-    <main
-      id="process-container"
-      className="fixed inset-0 overflow-y-scroll"
-      style={{ scrollSnapType: 'y mandatory' }}
-    >
+    <main>
+      <SmoothScroll />
       <StorySection />
       <ProcessHero />
       <LabReport />

@@ -42,10 +42,11 @@ const promises = [
 export default function CommitmentSection() {
   return (
     <section
+      id="promise"
       className="flex flex-col justify-center bg-white overflow-hidden"
-      style={{ height: '100dvh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }}
+      style={{ minHeight: 'auto' }}
     >
-      <div className="max-w-7xl mx-auto w-full px-6 md:px-12 py-8">
+      <div className="max-w-7xl mx-auto w-full px-6 md:px-12 py-24 md:py-32">
 
         <motion.p className="font-sans text-sm tracking-[0.35em] uppercase text-berry mb-6 font-semibold text-center" {...reveal(0)}>
           Our Promise
@@ -69,15 +70,7 @@ export default function CommitmentSection() {
           ))}
         </div>
 
-        <motion.div className="flex justify-center mt-8" {...reveal(0.4)}>
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-sans text-sm font-semibold text-white transition-all duration-300 hover:opacity-90 hover:scale-105 active:scale-95"
-            style={{ backgroundColor: '#C0392B' }}
-          >
-            ← Back to Berry Patch
-          </Link>
-        </motion.div>
+
 
       </div>
     </section>

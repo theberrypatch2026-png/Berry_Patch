@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import ScrollHint from './ScrollHint'
 import BackLink from './BackLink'
 
 const reveal = (delay = 0) => ({
@@ -17,12 +16,12 @@ export default function StorySection() {
   return (
     <section
       id="story"
-      className="relative flex items-center bg-white overflow-hidden"
-      style={{ height: '100dvh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }}
+      className="relative flex flex-col justify-center bg-white overflow-hidden py-16 md:py-24"
+      style={{ minHeight: 'auto' }}
     >
-      <BackLink />
 
-      <div className="max-w-7xl mx-auto w-full px-6 md:px-12 py-8 md:py-12">
+
+      <div className="max-w-7xl mx-auto w-full px-6 md:px-12 pb-24 md:pb-32 pt-28 md:pt-36">
 
         <motion.p className="font-sans text-sm tracking-[0.35em] uppercase text-berry mb-6 text-center font-semibold" {...reveal(0)}>
           The Origin
@@ -68,7 +67,6 @@ export default function StorySection() {
           </div>
         </div>
       </div>
-      <ScrollHint />
     </section>
   )
 }

@@ -25,7 +25,17 @@
   color: #FAFAF9;
 }
 
+html,
+body {
+  height: auto;
+  overflow-x: hidden;
+}
+
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  min-height: 100vh;
 }

@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import ScrollHint from './ScrollHint'
 
 const steps = [
   {
@@ -30,10 +29,11 @@ const steps = [
 export default function ProcessHero() {
   return (
     <section
+      id="process-steps"
       className="relative flex flex-col justify-center bg-white overflow-hidden"
-      style={{ height: '100dvh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }}
+      style={{ minHeight: 'auto' }}
     >
-      <div className="max-w-7xl mx-auto w-full px-5 md:px-12 py-6">
+      <div className="max-w-7xl mx-auto w-full px-5 md:px-12 py-24 md:py-32">
 
 
 
@@ -78,7 +78,6 @@ export default function ProcessHero() {
           ))}
         </div>
       </div>
-      <ScrollHint />
     </section>
   )
 }
