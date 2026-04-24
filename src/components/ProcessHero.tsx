@@ -33,7 +33,7 @@ export default function ProcessHero() {
       className="relative flex flex-col justify-center bg-white overflow-hidden"
       style={{ minHeight: 'auto' }}
     >
-      <div className="max-w-7xl mx-auto w-full px-5 md:px-12 py-24 md:py-32">
+      <div className="max-w-7xl mx-auto w-full px-5 md:px-12" style={{ paddingTop: 'clamp(3rem, 6vw, 8rem)', paddingBottom: 'clamp(3rem, 6vw, 8rem)' }}>
 
 
 

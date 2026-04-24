@@ -16,12 +16,12 @@ export default function StorySection() {
   return (
     <section
       id="story"
-      className="relative flex flex-col justify-center bg-white overflow-hidden py-16 md:py-24"
+      className="relative flex flex-col justify-center bg-white overflow-hidden"
       style={{ minHeight: 'auto' }}
     >
       <BackLink />
 
-      <div className="max-w-7xl mx-auto w-full px-6 md:px-12 pb-24 md:pb-32 pt-28 md:pt-36">
+      <div className="max-w-7xl mx-auto w-full px-6 md:px-12" style={{ paddingTop: 'clamp(12rem, 22vw, 18rem)', paddingBottom: 'clamp(3rem, 6vw, 6rem)' }}>
 
         <motion.p className="font-sans text-sm tracking-[0.35em] uppercase text-berry mb-6 text-center font-semibold" {...reveal(0)}>
           The Origin

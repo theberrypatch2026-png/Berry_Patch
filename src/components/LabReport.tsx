@@ -24,7 +24,7 @@ export default function LabReport() {
       className="relative flex flex-col justify-center bg-white overflow-hidden"
       style={{ minHeight: 'auto' }}
     >
-      <div className="max-w-7xl mx-auto w-full px-6 md:px-12 py-24 md:py-32">
+      <div className="max-w-7xl mx-auto w-full px-6 md:px-12" style={{ paddingTop: 'clamp(3rem, 6vw, 8rem)', paddingBottom: 'clamp(3rem, 6vw, 8rem)' }}>
 
         <motion.p className="font-sans text-sm tracking-[0.35em] uppercase text-berry mb-6 font-semibold text-center" {...reveal(0)}>
           Lab Report Summary
